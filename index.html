@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Library</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        #book-list {
+            margin-top: 20px;
+        }
+        .book-item {
+            background-color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .book-item h3 {
+            margin: 0 0 10px 0;
+            color: #007BFF;
+        }
+        .book-item p {
+            margin: 0;
+            color: #555;
+        }
+        .book-form {
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .book-form input[type="text"],
+        .book-form input[type="number"],
+        .book-form button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+        }
+        .book-form button {
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .book-form button:hover {
+            background-color: #0056b3;
+        }
+        #search-container {
+            margin-bottom: 20px;
+        }
+
+        .search-box {
+            padding: 10px;
+            margin-right: 10px;
+            width: calc(100% - 120px)/3;
+            box-sizing: border-box;
+        }
+
+        #search-container button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #search-container button:hover {
+            background-color: #0056b3;
+            
+        }
+        #book-details {
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        #book-details h2 {
+            margin-top: 0;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <h1>Book Library</h1>
+    <h2>Search Book</h2>
+    <form class="book-form" id="search-book-form">
+        <input type="text" id="title" name="title" placeholder="Title">
+        <input type="text" id="author" name="author" placeholder="Author">
+        <input type="number" id="published_year" name="published_year" placeholder="Published Year">
+        <button type="submit">Search Book</button>
+    </form>
+    <br>
+    <div id="book-update" style="display:none;">
+        <form class="book-form" id="update-book-form">
+            <input type="text" id="title" name="title" placeholder="Title" required>
+            <input type="text" id="author" name="author" placeholder="Author" required>
+            <input type="text" id="description" name="description" placeholder="Description" required>
+            <input type="number" id="published_year" name="published_year" placeholder="Published Year" required>
+            <button type="submit">Update Book</button>
+            <button onclick="hideUpdate()">Close</button>
+        </form>
+    </div>
+
+    <div id="book-details" style="display:none;">
+        <h2>Book Details</h2>
+        <div id="detail-title"></div>
+        <div id="detail-author"></div>
+        <div id="detail-description"></div>
+        <div id="detail-published-year"></div>
+
+        <button onclick="hideDetails()">Close</button>
+    </div>
+
+    <h2>Book List</h2>
+    <div id="book-list"></div>
+
+    <h2>Add New Book</h2>
+
+    <form class="book-form" id="add-book-form">
+        <input type="text" id="title" name="title" placeholder="Title" required>
+        <input type="text" id="author" name="author" placeholder="Author" required>
+        <input type="text" id="description" name="description" placeholder="Description" required>
+        <input type="number" id="published_year" name="published_year" placeholder="Published Year" required>
+        <button type="submit">Add Book</button>
+    </form>
+
+    <script src="app.js"></script>
+</body>
+</html>
