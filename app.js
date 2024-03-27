@@ -113,7 +113,7 @@ async function fetchBookDetails(bookId) {
     document.getElementById('detail-author').textContent = `Author: ${book.author}`;
     document.getElementById('detail-published-year').textContent = `Published Year: ${book.published_year}`;
     document.getElementById('detail-description').textContent = `Description: ${book.description}`;
-    document.getElementById('book-details').style.display = 'block';
+    document.getElementById('modal').style.display = 'block';
     nowNum = book.id;
 }
 
@@ -123,7 +123,7 @@ async function updateBook(bookId){
 }
 
 function hideDetails() {
-    document.getElementById('book-details').style.display = 'none';
+    document.getElementById('modal').style.display = 'none';
 }
 
 function hideUpdate() {
