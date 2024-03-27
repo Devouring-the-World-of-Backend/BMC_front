@@ -35,6 +35,7 @@ async function searchBooks(query){
     books.forEach(book => {
         const bookItem = document.createElement('div');
         bookItem.innerHTML = `
+            <img src="https://marketplace.canva.com/EAD12irp-Wk/1/0/1003w/canva-%EC%9D%BC%EB%AA%B0-%EB%A1%9C%EB%A7%A8%EC%8A%A4-%EC%A0%84%EC%9E%90%EC%B1%85-%ED%91%9C%EC%A7%80-rhOetH7hcqE.jpg" width="230" height="350" alt="이미지 설명">
             <h3>${book.title}</h3>
             <p>${book.author}</p>
             <button class="small-button" onclick="fetchBookDetails(${book.id})">상세 보기</button>
@@ -53,7 +54,8 @@ const updateBookForm = document.getElementById('update-book-form');
 searchBookForm.addEventListener('submit', async (e) => {
     e.preventDefault();
 
-    const data = new FormData(searchBookForm).entries();
+    const formData = new FormData(searchBookForm);
+    var data = formData.entries();
     var query = '';
 
     for(let [key,value] of data){
@@ -61,8 +63,8 @@ searchBookForm.addEventListener('submit', async (e) => {
             query += key+'='+value+'&';
         }
     }
-    query = query.slice(0,-1);
 
+    query = query.slice(0,-1);
     searchBooks(query);
 });
 
