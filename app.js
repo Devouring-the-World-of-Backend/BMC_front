@@ -124,6 +124,16 @@ function hideUpdate() {
     document.getElementById('book-update').style.display = 'none';
 }
 
+function hideSearch() {
+    document.getElementById('book-search').style.display = 'none';
+    document.getElementById('searchButton').style.display = 'block';
+}
+
+function openSearch(){
+    document.getElementById('book-search').style.display = 'block';
+    document.getElementById('searchButton').style.display = 'none';
+}
+
 async function deleteBook(bookId) {
     const response = await fetch(`http://localhost:8000/books/${bookId}`,{
         method:'DELETE'

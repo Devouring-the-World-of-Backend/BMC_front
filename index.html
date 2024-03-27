@@ -90,18 +90,40 @@
             margin-top: 0;
         }
 
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            box-sizing: border-box;
+
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .button:hover {
+            background-color: #0056b3;
+        }
+        
+
         
     </style>
 </head>
 <body>
     <h1>Book Library</h1>
     <h2>Search Book</h2>
-    <form class="book-form" id="search-book-form">
-        <input type="text" id="title" name="title" placeholder="Title">
-        <input type="text" id="author" name="author" placeholder="Author">
-        <input type="number" id="published_year" name="published_year" placeholder="Published Year">
-        <button type="submit">Search Book</button>
-    </form>
+    <button id="searchButton" class="button" onclick="openSearch()">Search!</button>
+    <div id="book-search" style="display:none;">
+        <form class="book-form" id="search-book-form">
+            <input type="text" id="title" name="title" placeholder="Title">
+            <input type="text" id="author" name="author" placeholder="Author">
+            <input type="number" id="published_year" name="published_year" placeholder="Published Year">
+            <button type="submit">Search Book</button>
+            <button onclick="hideSearch()">Close</button>
+        </form>
+    </div>
     <br>
     <div id="book-update" style="display:none;">
         <form class="book-form" id="update-book-form">
