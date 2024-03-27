@@ -13,12 +13,14 @@ async function fetchBooks() {
     books.forEach(book => {
         const bookItem = document.createElement('div');
         bookItem.innerHTML = `
+            <img src="https://marketplace.canva.com/EAD12irp-Wk/1/0/1003w/canva-%EC%9D%BC%EB%AA%B0-%EB%A1%9C%EB%A7%A8%EC%8A%A4-%EC%A0%84%EC%9E%90%EC%B1%85-%ED%91%9C%EC%A7%80-rhOetH7hcqE.jpg" width="230" height="350" alt="이미지 설명">
             <h3>${book.title}</h3>
-            <p>Author: ${book.author}</p>
-            <button onclick="fetchBookDetails(${book.id})">Details</button>
-            <button onclick="updateBook(${book.id})">Update</button>
-            <button onclick="deleteBook(${book.id})">Delete</button>
+            <p>${book.author}</p>
+            <button class="small-button" onclick="fetchBookDetails(${book.id})">상세 보기</button>
+            <button class="small-button" onclick="updateBook(${book.id})">수정</button>
+            <button class="small-button" onclick="deleteBook(${book.id})">삭제</button>
         `;
+        bookItem.className='grid-item';
         bookList.appendChild(bookItem);
     });
 }
@@ -34,11 +36,12 @@ async function searchBooks(query){
         const bookItem = document.createElement('div');
         bookItem.innerHTML = `
             <h3>${book.title}</h3>
-            <p>Author: ${book.author}</p>
-            <button onclick="fetchBookDetails(${book.id})">Details</button>
-            <button onclick="updateBook(${book.id})">Update</button>
-            <button onclick="deleteBook(${book.id})">Delete</button>
+            <p>${book.author}</p>
+            <button class="small-button" onclick="fetchBookDetails(${book.id})">상세 보기</button>
+            <button class="small-button" onclick="updateBook(${book.id})">수정</button>
+            <button class="small-button" onclick="deleteBook(${book.id})">삭제</button>
         `;
+        bookItem.className='grid-item';
         bookList.appendChild(bookItem);
     });
 }
@@ -113,6 +116,7 @@ async function fetchBookDetails(bookId) {
 }
 
 async function updateBook(bookId){
+    nowNum = bookId;
     document.getElementById('book-update').style.display = 'block';
 }
 

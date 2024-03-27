@@ -102,13 +102,38 @@
             border: none;
             cursor: pointer;
         }
-        
+
         .button:hover {
             background-color: #0056b3;
         }
-        
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
 
-        
+        .grid-item {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .small-button {
+            background-color: #007bff;
+            color: white; 
+            border: none; 
+            padding: 10px 0px; 
+            text-align: center; 
+            text-decoration: none;
+            display: inline-block;
+            font-size: 10px;
+            margin: 10px 0px; 
+            cursor: pointer; 
+            width: 70px; 
+        }
+
     </style>
 </head>
 <body>
@@ -142,12 +167,11 @@
         <div id="detail-author"></div>
         <div id="detail-description"></div>
         <div id="detail-published-year"></div>
-
-        <button onclick="hideDetails()">Close</button>
+        <button class="button" onclick="hideDetails()">Close</button>
     </div>
 
     <h2>Book List</h2>
-    <div id="book-list"></div>
+    <div id="book-list" class="grid-container"></div>
 
     <h2>Add New Book</h2>
 
