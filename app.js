@@ -17,7 +17,7 @@ async function fetchBooks() {
             <h3>${book.title}</h3>
             <p>${book.author}</p>
             <button class="small-button" onclick="fetchBookDetails(${book.id})">상세 보기</button>
-            <button class="small-button" onclick="updateBook(${book.id})">수정</button>
+            <button class="small-button" onclick="showUpdateBook(${book.id})">수정</button>
             <button class="small-button" onclick="deleteBook(${book.id})">삭제</button>
         `;
         bookItem.className='grid-item';
@@ -39,7 +39,7 @@ async function searchBooks(query){
             <h3>${book.title}</h3>
             <p>${book.author}</p>
             <button class="small-button" onclick="fetchBookDetails(${book.id})">상세 보기</button>
-            <button class="small-button" onclick="updateBook(${book.id})">수정</button>
+            <button class="small-button" onclick="showUpdateBook(${book.id})">수정</button>
             <button class="small-button" onclick="deleteBook(${book.id})">삭제</button>
         `;
         bookItem.className='grid-item';
@@ -49,7 +49,6 @@ async function searchBooks(query){
 
 const searchBookForm = document.getElementById('search-book-form');
 const addBookForm = document.getElementById('add-book-form');
-const updateBookForm = document.getElementById('update-book-form');
 
 searchBookForm.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -87,12 +86,11 @@ addBookForm.addEventListener('submit', async (e) => {
     }
 });
 
-updateBookForm.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const formData = new FormData(updateBookForm);
+async function bookUpdate(bookId){
+    const formData = new FormData(document.getElementById('update-book-form'));
     const data = Object.fromEntries(formData);
 
-    const response = await fetch(`http://localhost:8000/books/${nowNum}`, {
+    const response = await fetch(`http://localhost:8000/books/${bookId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json',
@@ -103,7 +101,7 @@ updateBookForm.addEventListener('submit', async (e) => {
     if (response.ok) {
         fetchBooks(); // 책 목록 다시 불러오기
     }
-});
+}
 
 async function fetchBookDetails(bookId) {
     const response = await fetch(`http://localhost:8000/books/${bookId}`);
@@ -113,21 +111,32 @@ async function fetchBookDetails(bookId) {
     document.getElementById('detail-author').textContent = `Author: ${book.author}`;
     document.getElementById('detail-published-year').textContent = `Published Year: ${book.published_year}`;
     document.getElementById('detail-description').textContent = `Description: ${book.description}`;
-    document.getElementById('modal').style.display = 'block';
-    nowNum = book.id;
+    document.getElementById('modal-detail').style.display = 'block';
 }
 
-async function updateBook(bookId){
-    nowNum = bookId;
-    document.getElementById('book-update').style.display = 'block';
+function showUpdateBook(bookId){
+    const updateBook = document.getElementById('book-update');
+    toInner = `
+            <h2>Update Book</h2>
+            <form class="book-form" id="update-book-form">
+                <input type="text" id="up-title" name="title" placeholder="Title" required>
+                <input type="text" id="up-author" name="author" placeholder="Author" required>
+                <input type="text" id="up-description" name="description" placeholder="Description" required>
+                <input type="number" id="up-published_year" name="published_year" placeholder="Published Year" required>
+                <button onclick="bookUpdate(${bookId})">Update Book</button>
+                <button onclick="hideUpdate()">Close</button>
+            </form>
+    `
+    updateBook.innerHTML = toInner;
+    document.getElementById('modal-update').style.display = 'block';
 }
 
 function hideDetails() {
-    document.getElementById('modal').style.display = 'none';
+    document.getElementById('modal-detail').style.display = 'none';
 }
 
 function hideUpdate() {
-    document.getElementById('book-update').style.display = 'none';
+    document.getElementById('modal-update').style.display = 'none';
 }
 
 function hideSearch() {

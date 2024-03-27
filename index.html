@@ -189,18 +189,13 @@
         </form>
     </div>
     <br>
-    <div id="book-update" style="display:none;">
-        <form class="book-form" id="update-book-form">
-            <input type="text" id="title" name="title" placeholder="Title" required>
-            <input type="text" id="author" name="author" placeholder="Author" required>
-            <input type="text" id="description" name="description" placeholder="Description" required>
-            <input type="number" id="published_year" name="published_year" placeholder="Published Year" required>
-            <button type="submit">Update Book</button>
-            <button onclick="hideUpdate()">Close</button>
-        </form>
+    <div id="modal-update" class="modal">
+        <div id="book-update" class="modal-content">
+            
+        </div>
     </div>
 
-    <div id="modal" class="modal">
+    <div id="modal-detail" class="modal">
         <div id="book-details" class="modal-content">
             <h2>Book Details</h2>
             <div id="detail-title"></div>
